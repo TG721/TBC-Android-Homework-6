@@ -1,7 +1,6 @@
 package com.example.tbc_homework_6
 
-
-class User (
+private class User (
     val id: Int,
     val firstName: String,
     val lastName: String,
