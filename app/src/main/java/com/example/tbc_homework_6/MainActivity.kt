@@ -12,10 +12,10 @@ import android.widget.Toast
 
 private class User (
     val id: Int,
-    val firstName: String,
-    val lastName: String,
-    val age: Int,
-    val email: String
+    var firstName: String,
+    var lastName: String,
+    var age: Int,
+    var email: String
 )
 
 private  fun isValidEmail(email: String):Boolean {
@@ -45,7 +45,6 @@ private fun validateID(id:String, users: List<User>):Boolean{
     }
     return true
 }
-
 
 
 class MainActivity : AppCompatActivity() {
@@ -120,6 +119,8 @@ private var users = arrayListOf<User>()
                 lastName.text.clear()
                 age.text.clear()
 
+                //checking if use with such id exists
+                //and if yes catching the user
                 var theOne:User? = null
                 var id_int:Int = id.text.toString().toInt()
                 for(s in users){
@@ -130,7 +131,7 @@ private var users = arrayListOf<User>()
                 //removing the use failed
                 if(theOne==null) {
 
-                    status.text="failed, no user with such ID exists"
+                    status.text="Status: failed, no user with such ID exists"
                     status.setTextColor(Color.RED)
 
                 }
@@ -145,8 +146,66 @@ private var users = arrayListOf<User>()
                 }
             }
 
+            //handling update button click
+            val updateButton = (findViewById<Button>(R.id.updateButton))
+            updateButton.setOnClickListener {
 
+                //checking if use with such id exists
+                //and if yes catching the user
+                var theOne: User? = null
+                var id_int: Int = id.text.toString().toInt()
+                for (s in users) {
+                    if (s.id == id_int) theOne = s
+                }
 
+                var status = (findViewById<TextView>(R.id.operationStatus))
+                //updating the user failed
+                if (theOne == null) {
+
+                    status.text = "Status: failed, no user with such ID exists"
+                    status.setTextColor(Color.RED)
+
+                }
+                //we can update the user
+
+                else{
+
+                    //to know if a field besides id was entered at all
+                    var ind=false
+
+                    if (age.text.toString()!="" && isValidAge(age.text.toString()) )
+                    {
+                        users[users.indexOf(theOne)].age=age.text.toString().toInt()
+                        ind=true
+                    }
+                    if (email.text.toString()!="" && isValidEmail(email.text.toString()) )
+                    {
+                        users[users.indexOf(theOne)].email=email.text.toString()
+                        ind=true
+                    }
+                    if (lastName.text.toString()!="" && isValidName(lastName.text.toString()) )
+                    {
+                        users[users.indexOf(theOne)].lastName=lastName.text.toString()
+                        ind=true
+                    }
+                    if (firstName.text.toString()!="" && isValidName(firstName.text.toString()) )
+                    {
+                        users[users.indexOf(theOne)].firstName=firstName.text.toString()
+                        ind=true
+                    }
+
+                    //update status message/text
+                    if(ind==true){
+                        status.text = "Status: info update was Successful"
+                        status.setTextColor(Color.GREEN)
+                    }
+                    else {
+                        status.text = "Status: failed, no new info was provided"
+                        status.setTextColor(Color.RED)
+                    }
+                }
+
+            }
 
         }
     }
