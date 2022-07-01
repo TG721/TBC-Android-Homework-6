@@ -17,7 +17,7 @@
         tools:layout_editor_absoluteY="-50dp" />
 
     <EditText
-        android:id="@+id/AddFirstName"
+        android:id="@+id/firstName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -25,11 +25,11 @@
         android:hint="First Name"
         android:inputType="textPersonName"
         android:textColorHint="@color/text"
-        app:layout_constraintStart_toEndOf="@+id/addId"
+        app:layout_constraintStart_toEndOf="@+id/id"
         app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
     <EditText
-        android:id="@+id/addLastName"
+        android:id="@+id/lastName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -38,10 +38,10 @@
         android:inputType="textPersonName"
         android:textColorHint="@color/text"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/addId" />
+        app:layout_constraintTop_toBottomOf="@+id/id" />
 
     <EditText
-        android:id="@+id/addEmail"
+        android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -50,20 +50,20 @@
         android:inputType="textEmailAddress"
         android:textColorHint="@color/text"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/addLastName" />
+        app:layout_constraintTop_toBottomOf="@+id/lastName" />
 
     <EditText
-        android:id="@+id/editTextNumberPassword"
+        android:id="@+id/age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Age"
-        android:inputType="numberPassword"
+        android:inputType="numberSigned"
         android:textColorHint="@color/text"
-        app:layout_constraintStart_toEndOf="@+id/addLastName"
-        app:layout_constraintTop_toBottomOf="@+id/AddFirstName" />
+        app:layout_constraintStart_toEndOf="@+id/lastName"
+        app:layout_constraintTop_toBottomOf="@+id/firstName" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -80,8 +80,8 @@
         android:layout_marginTop="20dp"
         android:text="Add"
         android:textColor="@color/text"
-        app:layout_constraintStart_toEndOf="@+id/addEmail"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumberPassword" />
+        app:layout_constraintStart_toEndOf="@+id/email"
+        app:layout_constraintTop_toBottomOf="@+id/age" />
 
     <Button
         android:id="@+id/removeButton"
@@ -89,12 +89,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:text="Remove"
+        android:text="Remove By ID"
         android:textColor="@color/text"
         app:layout_constraintEnd_toStartOf="@+id/imageView"
         app:layout_constraintHorizontal_bias="0.007"
         app:layout_constraintStart_toEndOf="@+id/addButton"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumberPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/age" />
 
     <Button
         android:id="@+id/updateButton"
@@ -123,7 +123,7 @@
         app:layout_constraintGuide_percent="0.55" />
 
     <EditText
-        android:id="@+id/addId"
+        android:id="@+id/id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -141,7 +141,7 @@
         android:text="Active Users "
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/addEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <TextView
         android:id="@+id/removedUsers"
@@ -157,11 +157,13 @@
         android:id="@+id/operationStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="2dp"
         android:text="Status: "
         app:layout_constraintEnd_toStartOf="@+id/imageView"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/updateButton" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
