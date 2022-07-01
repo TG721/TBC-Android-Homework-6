@@ -3,12 +3,16 @@ package com.example.tbc_homework_6
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.preference.PreferenceDataStore
 import android.provider.ContactsContract
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import javax.sql.DataSource
+
+
 
 private class User (
     val id: Int,
@@ -80,14 +84,14 @@ private var users = arrayListOf<User>()
                 status.setTextColor(Color.RED)
             }
             //validate
-            else if (!isValidEmail(email.text.toString()))
+            else if (!isValidEmail(email.text.toString().trim()))
                     email.setError( "Email is not valid")
 
-            else    if (!isValidAge(age.text.toString()))
+            else    if (!isValidAge(age.text.toString().trim()))
                     age.setError("Age should be positive whole number")
 
-            else    if(!isValidName(firstName.text.toString()) ) firstName.setError("not valid First Name")
-            else    if(!isValidName(lastName.text.toString()) ) lastName.setError("not valid Last Name")
+            else    if(!isValidName(firstName.text.toString().trim()) ) firstName.setError("not valid First Name")
+            else    if(!isValidName(lastName.text.toString().trim()) ) lastName.setError("not valid Last Name")
 
             //check if id is valid,
             //since both age and id are whole positive numbers
@@ -109,6 +113,7 @@ private var users = arrayListOf<User>()
             }
 
             //handling remove button click
+
             val removeButton = (findViewById<Button>(R.id.removeButton))
             removeButton.setOnClickListener {
 
@@ -128,7 +133,7 @@ private var users = arrayListOf<User>()
                 }
 
                 var status = (findViewById<TextView>(R.id.operationStatus))
-                //removing the use failed
+                //removing the user failed
                 if(theOne==null) {
 
                     status.text="Status: failed, no user with such ID exists"
@@ -173,22 +178,22 @@ private var users = arrayListOf<User>()
                     //to know if a field besides id was entered at all
                     var ind=false
 
-                    if (age.text.toString()!="" && isValidAge(age.text.toString()) )
+                    if (age.text.toString()!="" && isValidAge(age.text.toString().trim()) )
                     {
                         users[users.indexOf(theOne)].age=age.text.toString().toInt()
                         ind=true
                     }
-                    if (email.text.toString()!="" && isValidEmail(email.text.toString()) )
+                    if (email.text.toString()!="" && isValidEmail(email.text.toString().trim()) )
                     {
                         users[users.indexOf(theOne)].email=email.text.toString()
                         ind=true
                     }
-                    if (lastName.text.toString()!="" && isValidName(lastName.text.toString()) )
+                    if (lastName.text.toString()!="" && isValidName(lastName.text.toString().trim()) )
                     {
                         users[users.indexOf(theOne)].lastName=lastName.text.toString()
                         ind=true
                     }
-                    if (firstName.text.toString()!="" && isValidName(firstName.text.toString()) )
+                    if (firstName.text.toString()!="" && isValidName(firstName.text.toString().trim()) )
                     {
                         users[users.indexOf(theOne)].firstName=firstName.text.toString()
                         ind=true
